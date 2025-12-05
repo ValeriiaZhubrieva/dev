@@ -2218,17 +2218,23 @@ function rangeInit() {
     rangePriceSlider.forEach((range) => {
       let minValue = parseInt(range.getAttribute("data-min"), 10);
       let maxValue = parseInt(range.getAttribute("data-max"), 10);
+      let startRangeValue = parseInt(range.getAttribute("data-start"), 10);
+      let startRangeEndValue =parseInt(range.getAttribute("data-end"), 10);
       initialize(range, {
-        start: [minValue, maxValue],
+        start: [startRangeValue, startRangeEndValue],
         // [0,200000]
         connect: true,
         range: {
           min: minValue,
           max: maxValue
         },
-        format: hasWNumb ? wNumb({
-          decimals: 0
-        }) : void 0
+        // format: hasWNumb ? wNumb({
+        //   decimals: 0
+        // }) : void 0
+          format: {
+              to: value => Math.round(value),
+              from: value => Math.round(value)
+          }
       });
       const startValue = range.parentElement.querySelector("[data-start-value]");
       const endValue = range.parentElement.querySelector("[data-end-value]");
