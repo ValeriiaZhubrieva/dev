@@ -411,6 +411,8 @@ body {
     width: 45px;
 }
 .product-card__buy.is-active {
+    background-color: var(--text-color);
+    color: var(--bg-color);
 }
 .news-card {
     background-color: var(--bg-color);
